@@ -11,19 +11,24 @@ Ldap configuration to authenticate user through active directory using django au
 
 
 ## Configurations
+1. Import Libraries
 
-1. Add authentication backend in settings.py
+    import ldap
+    
+    from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
+
+2. Add authentication backend in settings.py
 
     AUTHENTICATION_BACKENDS = [
         'django_auth_ldap.backend.LDAPBackend',
         'django.contrib.auth.backends.ModelBackend',
     ]
-
-2. Bypass SSL
+    
+3. Bypass SSL
      
     ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
 
-3. Individual User authentication
+4. Individual User authentication
 
     AUTH_LDAP_SERVER_URI = "ldaps://yourDomain:636"
     
@@ -35,7 +40,7 @@ Ldap configuration to authenticate user through active directory using django au
     
     AUTH_LDAP_USER_SEARCH = LDAPSearch(AUTH_LDAP_BASE_DN, ldap.SCOPE_SUBTREE, "(sAMAccountName=%(user)s)")
 
-4. Group based user authentication
+5. Group based user authentication
 
     AUTH_LDAP_GROUP_SEARCH = LDAPSearch("OU=Users,OU=Service Accounts,DC=ReplaceWithYourValue,DC=corp,DC=com",
                                     ldap.SCOPE_SUBTREE, "(&(objectClass=user)(sAMAccountName=%(user)s))"
@@ -55,7 +60,7 @@ Ldap configuration to authenticate user through active directory using django au
 
     AUTH_LDAP_FIND_GROUP_PERMS = True
     
-5. Logging
+6. Logging
 
 
     import logging
