@@ -52,10 +52,9 @@ Ldap configuration to authenticate user through active directory using django au
     
     AUTH_LDAP_USER_ATTR_MAP = {
         "username": "sAMAccountName",
-        "full_name": "displayname",
-        "first_name": "name",
-        "last_name": "sn",
-        "email": "mail",
+        "first_name": "displayname",
+        "last_name": "name",
+        "email": "mail"
     }
 
     AUTH_LDAP_FIND_GROUP_PERMS = True
